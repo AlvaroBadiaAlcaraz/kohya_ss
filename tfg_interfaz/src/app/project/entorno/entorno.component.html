@@ -1,0 +1,61 @@
+<h2>Paso 1: Creación del entorno de entrenamiento</h2>
+
+<div>
+    <p></p>
+    <h3>1. Introducir las imágenes de entrenamiento</h3>
+    <p>Elija las imágenes con las que entrenará el modelo de LoRA que quiera generar. <br/>
+       Introduzca todas las imágenes que quiera usar a la vez.
+    </p>
+    
+    <form (ngSubmit)="onSubmit()">
+      <input type="file" (change)="onFileChange($event)" multiple /> 
+      <br/>
+      <br/>
+      <button type="submit">Subir</button>
+    </form>
+
+    <br/>
+
+</div>
+
+<div *ngIf="input">
+
+    <p></p>
+    <h3>2. Especificar el nombre del modelo y que clase de modelo es.</h3>
+    
+    <form [formGroup] = "myForm" (submit)="onSubmitForm()">
+
+        <p>
+            El nombre que elija en este paso será el que más adelante identifique a su modelo. <br/>
+            El nombre es recomendable que este compuesto por nombre y primer apellido escritos juntos. Por ejemplo: JohnDoe <br/>
+        </p>
+        <label>Sujeto</label> <br/>
+        <input type="text" formControlName = "sujeto"> <br/>
+
+        <p>
+            La clase será utilizada por el modelo durante el entrenamiento. <br/>
+            En caso de estar entrenando el modelo de un hombre elija la opción de hombre y en caso de ser una mujer elija la opción de mujer <br/>
+        </p>
+    
+        <label>Clase de sujeto</label> <br/>
+        <select formControlName = "clase">
+            <option [value]="opcion.opcion" *ngFor="let opcion of opciones">{{opcion.opcion}}</option>
+        </select> <br/>
+        
+        <br/>
+        <input type="submit" value="Enviar" [disabled]="myForm.invalid">
+    </form>
+</div>
+
+<div *ngIf="env">
+
+    <p> 
+        ¡Perfecto! <br/>
+        Este paso ya ha finalizado, pinche a continuación para conntinuar con el proceso de entrenamiento de su LoRA: <br/>
+        <a routerLink="/caption">Siguiente paso</a> 
+    
+    </p>
+
+</div>
+
+  

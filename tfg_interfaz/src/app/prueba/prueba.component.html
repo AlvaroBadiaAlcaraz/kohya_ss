@@ -1,0 +1,13 @@
+<form (ngSubmit)="onSubmit()" #paramForm="ngForm">
+    <div>
+      <label for="param1">Param 1:</label>
+      <input type="text" id="param1" required [(ngModel)]="param1" name="param1">
+    </div>
+    <div>
+      <label for="param2">Param 2:</label>
+      <input type="text" id="param2" required [(ngModel)]="param2" name="param2">
+    </div>
+    <button type="submit">Submit</button>
+  </form>
+  <p *ngIf="result">{{ result }}</p>
+  

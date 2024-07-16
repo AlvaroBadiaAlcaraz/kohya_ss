@@ -1,0 +1,37 @@
+<div>
+    <h1>Paso 2: Corrección de descripciones de las imágenes</h1>
+    <p>
+        A continuación se mostrarán las imágenes que ha introducido al modelo para entrenarlo, de manera automática se ha escrito una pequeña descripción de cada una de ellas. <br>
+        En el caso de que considere que una de estas descripciones no es lo suficientemente buena o no se adecua correctamente a lo que se muestra en la imagen puede modificarla, para que los cambios sean efectivos tras modificar la descripción deberá hacer click en el botón de "Guardar cambios" <br>
+        <br>
+        Para que las descripciones puedan ser utilizadas en el entrenamiento del modelo deberñan comenzar todas con el nombre del sujeto que declaró con anterioridad. <br>
+        Por ejemplo, si en el paso anterior introdujo como nombre del sujeto JohnDoe, las descripciones deberñan comenzar de la siguiente manera: JohnDoe is a man with long hair, blue eyes, etc. <br>
+        <br>
+        Las descripciones deben estar en inglés, ya que es este el idioma que entiende el modelo para entrenar, y deberían centrarse en el sujeto sobre el que se esta entrenando, describiendo sus atributos físicos principalmente. <br>
+        Procure ser consistente con sus descripciones, ya que el modelo usarña los atributos comunes entre todas las imagenes para realizar el entrenamiento. <br>
+        Evitar añadir a las descripciones detalles del fondo, ya que no son relevante spara obtener un buen modelo y pueden confundir al modelo en el proceso de entrenamiento. <br>
+        <br>
+        Las descripciones deberían contener entre 25 y 75 palabras, cuantos mas detalles se den en cada una de las imágenes, mejor será el resultado del modelo.
+    </p>
+    <br>
+</div>
+
+<h2>Imágenes de entrenamiento:</h2>
+
+<div *ngFor="let item of images">
+    <img [src]="'http://localhost:5000/images/' + item.image" alt="{{ item.image }}" />
+    <textarea [(ngModel)]="item.description"></textarea>
+    <button (click)="saveDescription(item)">Guardar cambios</button>
+    <br>
+    <br>
+</div>
+
+<div>
+
+    <p> 
+        Una vez haya revisado que todas las imágenes estan correctamente descritas, puede continuar con el proceso de entrenamiento pinchando a continuación: <br/>
+        <a routerLink="/train">Siguiente paso</a> 
+    
+    </p>
+
+</div>
