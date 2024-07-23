@@ -1,1 +1,33 @@
-<p>requisitos works!</p>
+
+<div>
+    <h2>Requisitos del sistema:</h2>
+    <p>Aunque los modelos LoRA sean los menos exigentes para entrenar un modelo de generación de imágenes estos siguen necesitando un mínimo de recursos. <br>
+       Para asegurar que los resultados sean correctos y no tarde el proceso demasiado tiempo es recomendable que el ordenador en el que se ejecute tenga al menos <b>8 GB de VRAM</b> <br>
+    </p>
+</div>
+
+<div>
+    <h2>Clave de Clarifai:</h2>
+    <p>Para poder hacer uso de esta interfaz es necesario contar con una cuenta de la página web <b>Clarifai</b>, ya que ciertas partes del proceso hacen uso de métodos proporcionados por APIs de esta página. <br>
+       Enlace a la página de <a [href]="enlace" target="_blank">Clarifai</a> <br> 
+    </p>
+    <p>
+        Una vez creada la cuenta, en la pestaña de "Account" (tu cuenta), en el apartado de seguridad "Security", podrás generar un token personal, este token es el necesario para poder hacer uso de la interfaz. <br>
+        <br>bf280c947fec4e52b0fc9883205cbfc2
+    </p>
+    <form (ngSubmit)="onSubmit()" #paramForm="ngForm">
+        <div>
+          <label for="param1">Param 1:</label>
+          <input type="text" id="param1" required [(ngModel)]="param1" name="param1">
+        </div>
+        <button type="submit">Submit</button>
+      </form>
+</div>
+
+<div *ngIf = "key">
+    <p>
+        Una vez introducida la clave de clarifai, ya es posible comenzar con el proceso de entrenamiento. <br>
+        Haga click aquí: 
+        <button (click)="siguiente_paso()">Comenzar creación de LoRA</button>
+    </p>
+</div>

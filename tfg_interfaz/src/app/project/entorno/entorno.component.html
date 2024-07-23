@@ -3,15 +3,19 @@
 <div>
     <p></p>
     <h3>1. Introducir las imágenes de entrenamiento</h3>
-    <p>Elija las imágenes con las que entrenará el modelo de LoRA que quiera generar. <br/>
-       Introduzca todas las imágenes que quiera usar a la vez.
+    <p>
+        Elija las imágenes con las que entrenará el modelo de LoRA que quiera generar. <br/> <br>
+        Para lograr los mejores resultados las imágenes deberían ser de la mayor calidad psoible, no es necesario que todas tengan l amisma relación de aspecto. <br>
+        Introduzca alrededor de 10 imágenes para mejorar las posibilidades de obtener un mejor resultado, cuántas más imágenes introduzca mejor resultado obtendrá. <br>
+        Aunque no es necesario una gran cantidad de imágenes, con un mínimo de 10 hasta unas 20 deberían ser suficientes para garantizar un buen resultado. <br> <br>
+        Introduzca todas las imágenes que quiera usar a la vez.
     </p>
     
     <form (ngSubmit)="onSubmit()">
-      <input type="file" (change)="onFileChange($event)" multiple /> 
-      <br/>
-      <br/>
-      <button type="submit">Subir</button>
+    <input type="file" (change)="onFileChange($event)" multiple /> 
+    <br/>
+    <br/>
+    <button type="submit">Subir</button>
     </form>
 
     <br/>
@@ -47,15 +51,17 @@
     </form>
 </div>
 
+<div *ngIf="loading">
+    <h3>Por favor espere un momento, se están procesando sus imágenes ...</h3>
+</div>
+
 <div *ngIf="env">
 
+    <h3>¡Paso finalizado! </h3>
     <p> 
-        ¡Perfecto! <br/>
-        Este paso ya ha finalizado, pinche a continuación para conntinuar con el proceso de entrenamiento de su LoRA: <br/>
-        <a routerLink="/caption">Siguiente paso</a> 
+        Este paso ya ha finalizado, pinche a continuación para conntinuar con el proceso de entrenamiento de su LoRA:  
+        <button (click)="siguiente_paso()">Siguiente paso</button>
     
     </p>
 
 </div>
-
-  

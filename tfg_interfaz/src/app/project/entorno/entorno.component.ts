@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { DataService } from '../../servicios/data.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-entorno',
@@ -12,8 +13,9 @@ export class EntornoComponent {
   message: string = ""
   input:boolean = false
   env: boolean = false
+  loading: boolean = false
 
-  constructor(private dataService: DataService) {}
+  constructor(private dataService: DataService, private router: Router) {}
 
   onFileChange(event: any) {
     this.selectedFiles = Array.from(event.target.files);
@@ -43,13 +45,19 @@ export class EntornoComponent {
       sujeto: this.myForm.value.sujeto,
       clase: this.myForm.value.clase
     };
+    this.loading = true;
     this.dataService.createEnv(params)
       .subscribe(response => {
         console.log('Response: ', response);
+        this.loading = false
         this.env = true
       }, error => {
         console.error('Error: ', error);
       });
+  }
+
+  siguiente_paso() {
+    this.router.navigate(['/caption']);
   }
 
 }

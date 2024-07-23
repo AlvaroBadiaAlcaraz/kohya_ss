@@ -1,1 +1,59 @@
-<p>train works!</p>
+<div>
+
+  <h1>Paso 3: Configuración del modelo</h1>
+  <p>
+    A continuación se muestran distintos parámetros que se pueden modificar para alterar el resultado del modelo. <br>
+    Cada parámetro afecta de una manera distinta al resultado final, junto a cada parámetro hay una explicación de que modifica y como afecta esto al modelo. <br>
+    Si no quiere modificar ninguno, puede pasar directamente al entrenamientro del modelo, ya que todos tienen asignados valores por defecto que proporcionan un modelo funcional.
+  </p>
+</div>
+
+<div *ngIf="tomlForm">
+  <h2>Parámetros del modelo:</h2>
+  <h3>Importante: si modifica algún parámetro deberá hacer click en el botón de "Guardar parámetros", para que los cambios sean registrados correctamente.</h3>
+    <form [formGroup]="tomlForm" (ngSubmit)="updateToml()">
+      <div *ngIf="tomlForm.get('epoch')">
+        <label for="epoch"> <b>Epoch:</b> </label>
+        <p>
+          Descripción de epoch.
+        </p>
+        <input id="epoch" formControlName="epoch" type="number"/>
+      </div>
+      <div *ngIf="tomlForm.get('learning_rate')">
+        <label for="learning_rate"> <b>Learning rate:</b> </label>
+        <p>
+          Descripción de learning rate.
+        </p>
+        <input id="learning_rate" formControlName="learning_rate" type="number"/>
+      </div>
+      
+      <button type="submit">Guardar parámetros</button>
+    </form>
+</div>
+
+<div>
+  <h2>Comenzar entrenamiento del modelo:</h2>
+  <p>
+    Una vez haya finalizado de modificar los parámetros, haga click a continuación para comenzar el entrenamiento y obtener su modelo.
+  </p>
+  <button (click)="onButtonClick()">Empezar entrenamiento</button>
+</div>
+
+<div *ngIf="loading">
+  <h3>Por favor espere un momento, se está ejecutando el entrenamiento del modelo ...</h3>
+  <h4>Dependiendo de su ordenador puede tardar más o menos tiempo, normalmente tarda entre 10 y 20 minutos, por favor no apague el equipo hasta que termine, una vez termine aparecerá a continuación la opción de descargar el modelo creado.</h4>
+</div>
+
+<div *ngIf="train">
+
+  <h2>¡Entrenamiento finalizado!</h2>
+  <p>
+    Enhorabuena, ha finalizado el proceso de creación de un modelo de generación de imágenes mediant inteligencia artificial, a continuación se encuentra su modelo, haga click para descargarlo.
+  </p>
+
+  <ul>
+      <li *ngFor="let file of files">
+        {{ file }} <button (click)="downloadFile(file)">Descargar modelo</button>
+      </li>
+    </ul>
+</div>

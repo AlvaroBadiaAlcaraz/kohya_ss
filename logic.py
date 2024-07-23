@@ -9,7 +9,7 @@ import toml
 
 ruta_json = "clasificaciones.json"
 etiquetas = {}
-os.environ["CLARIFAI_PAT"] = "bf280c947fec4e52b0fc9883205cbfc2"
+os.environ["CLARIFAI_PAT"] = ""
 modelo_gpt_vision = "https://clarifai.com/openai/chat-completion/models/openai-gpt-4-vision"
 
 
@@ -91,6 +91,19 @@ def crear_entorno(carpeta_input, sujeto, clase):
     except OSError as e:
         print(f"Error al crear la carpeta '{image_train}': {e}")
 
+    root = os.getcwd()
+    file_path = 'config_lora/config_lora.toml'
+
+    config_lora = toml.load(file_path)
+
+    config_lora['logging_dir'] = root + "\entorno\log"
+    config_lora['output_dir'] = root + "\entorno\model"
+    config_lora['train_data_dir'] = root + "\entorno\image"
+    config_lora['output_name'] = sujeto
+
+    with open(file_path, 'w') as toml_file:
+        toml.dump(config_lora, toml_file)
+
     return image_train
 
 
@@ -157,8 +170,11 @@ def modificar_config():
 
 
 def start_train():
+
+    root = os.getcwd()
+
     comando = [
-    'C:\\Users\\alvar\\Desktop\\TFGS\\TFG_INFO\\TFG_info\\kohya_ss\\venv\\Scripts\\accelerate.EXE',
+    root + '\\venv\\Scripts\\accelerate.EXE',
     'launch',
     '--dynamo_backend', 'no',
     '--dynamo_mode', 'default',
@@ -166,11 +182,10 @@ def start_train():
     '--num_processes', '1',
     '--num_machines', '1',
     '--num_cpu_threads_per_process', '2',
-    'C:/Users/alvar/Desktop/TFGS/TFG_INFO/TFG_info/kohya_ss/sd-scripts/train_network.py',
+    root + '/sd-scripts/train_network.py',
     '--config_file',
-    'C:\\Users\\alvar\\Desktop\\TFGS\\TFG_INFO\\TFG_info\\kohya_ss\\entorno\\model/config_lora-20240702-190439.toml'
-]
-
+    root + '\\config_lora\\config_lora.toml'
+    ]
 
     try:
         resultado = subprocess.run(comando, check=True)
@@ -184,7 +199,7 @@ def start_train():
 
 
 
-
+"""
 def launch_train_gui():
         # Especifica la ruta del archivo .bat que deseas ejecutar
     ruta_bat = "gui.bat"
@@ -201,7 +216,7 @@ def launch_train_gui():
         print(f"Error al ejecutar el archivo .bat: {e}")
     except FileNotFoundError:
         print("El archivo .bat no se encontró.")
-
+"""
 
 def obtener_carpeta_entrenamiento(base_path):
     image_path = os.path.join(base_path, 'image')
@@ -265,6 +280,7 @@ if __name__ == '__main__':
     start_train()
     #base_path = "entorno"
     #print(obtener_carpeta_entrenamiento(base_path))
+
     
 
 

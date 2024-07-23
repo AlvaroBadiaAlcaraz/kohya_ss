@@ -11,34 +11,4 @@ Posible modelo python entrenamiento: https://huggingface.co/docs/diffusers/train
 https://www.yeschat.ai/blog-Train-your-own-LORA-model-in-30-minutes-LIKE-A-PRO-20527
 https://machinelearningmastery.com/fine-tuning-stable-diffusion-with-lora/
 
-Ejecutar .bat:
-import subprocess
-
-# Especifica la ruta del archivo .bat que deseas ejecutar
-ruta_bat = 'ruta/al/archivo.bat'
-
-# Ejecutar el archivo .bat
-try:
-    resultado = subprocess.run([ruta_bat], check=True, shell=True)
-    print("El archivo .bat se ejecutó correctamente.")
-except subprocess.CalledProcessError as e:
-    print(f"Error al ejecutar el archivo .bat: {e}")
-except FileNotFoundError:
-    print("El archivo .bat no se encontró.")
-
-
-Ejecutar comando desde un directorio:
-
-import subprocess
-
-# Especifica la ruta del directorio de trabajo y el comando que deseas ejecutar
-directorio_trabajo = 'ruta/al/directorio'
-comando = 'comando_a_ejecutar'
-
-try:
-    resultado = subprocess.run(comando, cwd=directorio_trabajo, check=True, shell=True)
-    print("El comando se ejecutó correctamente.")
-except subprocess.CalledProcessError as e:
-    print(f"Error al ejecutar el comando: {e}")
-except FileNotFoundError:
-    print("El directorio de trabajo o el comando no se encontraron.")
+https://machinelearningmastery.com/using-lora-in-stable-diffusion/#:~:text=LoRA%2C%20or%20Low%2DRank%20Adaptation,inherently%20expensive%20and%20time%2Dconsuming

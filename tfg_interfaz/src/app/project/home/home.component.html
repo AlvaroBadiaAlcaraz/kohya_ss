@@ -1,1 +1,23 @@
-<p>home works!</p>
+
+<div>
+    <h1>Interfaz para creación de modelos de generación de imágenes con IA</h1>
+    <h2>¿Cómo funciona?</h2>
+    <p>Haciendo uso de esta interfaz no será necesario contar con ningún conocimiento previo para poder crear tu propio modelo de inteligencia artificial para generar imágenes <br>
+       Esta interfaz contempla la generación de modelos basados en personas por el momento. <br>
+       Lo único que será necesario son unas cunatas fotos del sujeto sobre el que se quiera generar un modelo. <br>
+       A medida que se avance en el proceso se irán específicando los pasos a seguir, tras seguir 3 sencillos pasos lograrás tener un modelo completamente funcional que podrás utilizar en cualquier método de generación de imágenes basado en Stable Diffusion <br>
+       Para hacer uso de este modelo se recomienda hacer uso de la siguiente herramienta: <a [href]="enlace" target="_blank">Automatic 1111</a> <br>
+    </p>
+</div>
+
+<div>
+    <h2>Modelos disponibles:</h2>
+    <div>
+        <h3>LoRA:</h3>
+        <p> Los modelos LoRA (Low-Rank Adaptation) son modelos más ligeros usados para fine tuning o Stable Diffusion, estos modelos se basan en añadir detalles más específicos a <br>
+            modelos ya existentes. Gracias a esto se obtienen muy buenos resultados sin la necesidad de entrenar modelos de 0, ya que esto es muy costoso en tiempo y recursos. <br>
+        </p>
+        <button (click)="Ir_a_Lora()">Entrenar un modelo de LoRA</button>
+    </div>
+</div>
+

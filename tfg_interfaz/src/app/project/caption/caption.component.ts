@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { DataService } from '../../servicios/data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-caption',
@@ -9,7 +10,7 @@ import { DataService } from '../../servicios/data.service';
 export class CaptionComponent {
   images: any[] = [];
 
-  constructor(private dataService: DataService ) { }
+  constructor(private dataService: DataService, private router: Router ) { }
 
   ngOnInit() {
     this.dataService.getImages().subscribe(data => {
@@ -21,5 +22,9 @@ export class CaptionComponent {
     this.dataService.updateDescription(item.image, item.description).subscribe(response => {
       console.log('Description saved:', response);
     });
+  }
+
+  siguiente_paso() {
+    this.router.navigate(['/train']);
   }
 }
